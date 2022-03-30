@@ -1,0 +1,14 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: demo
+
+  datasource:
+    platform: mysql
+    url: jdbc:mysql://dbserver-a.cayej1u7lnv0.ap-northeast-2.rds.amazonaws.com:3306/bunjangDb?autoReconnect=true # 변경해주세요
+    username:  tomy807
+    password:  tpdnddl1104
+    driver-class-name: com.mysql.cj.jdbc.Driver # mysql 8버전
+    # driver-class-name: com.mysql.jdbc.Driver # mysql 5버전
