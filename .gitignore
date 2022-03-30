@@ -48,6 +48,7 @@ imageUploads
 # *.ipr
 *.yml
 secret/
+
 # CMake
 cmake-build-*/
 
