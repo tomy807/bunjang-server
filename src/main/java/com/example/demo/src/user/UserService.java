@@ -10,6 +10,7 @@ import com.example.demo.utils.JwtService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import static com.example.demo.config.BaseResponseStatus.*;
@@ -23,6 +24,8 @@ public class UserService {
     private final UserProvider userProvider;
     private final JwtService jwtService;
 
+    @Value("${secret.jwt_secret_key}")
+    String jwtSecretKey;
 
     @Autowired
     public UserService(UserDao userDao, UserProvider userProvider, JwtService jwtService) {
@@ -42,7 +45,7 @@ public class UserService {
         String pwd;
         try{
             //암호화
-            pwd = new AES128(Secret.USER_INFO_PASSWORD_KEY).encrypt(postUserReq.getPassword());
+            pwd = new AES128(jwtSecretKey).encrypt(postUserReq.getPassword());
             postUserReq.setPassword(pwd);
         } catch (Exception ignored) {
             throw new BaseException(PASSWORD_ENCRYPTION_ERROR);
